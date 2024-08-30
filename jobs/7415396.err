@@ -1,0 +1,20 @@
+2024-06-21 03:59:57.630422: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-06-21 03:59:59.775340: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1525] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 10438 MB memory:  -> device: 0, name: NVIDIA GeForce GTX 1080 Ti, pci bus id: 0000:83:00.0, compute capability: 6.1
+2024-06-21 04:13:27.279205: I tensorflow/stream_executor/cuda/cuda_dnn.cc:368] Loaded cuDNN version 8907
+2024-06-21 04:13:28.691532: W tensorflow/stream_executor/gpu/asm_compiler.cc:111] *** WARNING *** You are using ptxas 11.0.221, which is older than 11.1. ptxas before 11.1 is known to miscompile XLA code, leading to incorrect results or invalid-address errors.
+
+You may not need to update to CUDA 11.1; cherry-picking the ptxas binary is often sufficient.
+WARNING:tensorflow:Callback method `on_train_batch_end` is slow compared to the batch time (batch time: 0.0147s vs `on_train_batch_end` time: 0.0179s). Check your callbacks.
+2024-06-21 05:49:24.293886: W tensorflow/core/data/root_dataset.cc:200] Optimization loop failed: CANCELLED: Operation was cancelled
+/data/leslie/sarthak/environments/chrombpnet/lib/python3.10/site-packages/scipy/spatial/distance.py:1261: RuntimeWarning: invalid value encountered in divide
+  p = p / np.sum(p, axis=axis, keepdims=True)
+/data/leslie/sarthak/chrombpnet/chrombpnet/training/utils/metrics_utils.py:196: RuntimeWarning: invalid value encountered in divide
+  profile_prob = profile / np.sum(profile)
+/data/leslie/sarthak/environments/chrombpnet/lib/python3.10/site-packages/scipy/spatial/distance.py:1262: RuntimeWarning: invalid value encountered in divide
+  q = q / np.sum(q, axis=axis, keepdims=True)
+/data/leslie/sarthak/chrombpnet/chrombpnet/training/metrics.py:38: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  plt.legend(loc='best')
+2024-06-21 05:50:40.586381: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1525] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 10438 MB memory:  -> device: 0, name: NVIDIA GeForce GTX 1080 Ti, pci bus id: 0000:83:00.0, compute capability: 6.1
+WARNING:tensorflow:From /data/leslie/sarthak/environments/chrombpnet/lib/python3.10/site-packages/shap/explainers/deep/deep_tf.py:140: The name tf.keras.backend.get_session is deprecated. Please use tf.compat.v1.keras.backend.get_session instead.
+

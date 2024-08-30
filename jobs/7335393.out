@@ -1,0 +1,86 @@
+Sender: LSF System <lsfadmin@lx07>
+Subject: Job 7335393: <#!/bin/bash; # Source the bashrc file;source ~/.bashrc; # LSF directives;#BSUB -q gpuqueue;#BSUB -n 1;#BSUB -gpu "num=1";#BSUB -R "rusage[mem=32]";#BSUB -sla llSC2;#BSUB -W 35:00;#BSUB -o /data/leslie/sarthak/chrombpnet/jobs/%J.out;#BSUB -e /data/leslie/sarthak/chrombpnet/jobs/%J.err; # Activate your environment;source ~/mambaforge/etc/profile.d/mamba.sh  # Adjust this line to your environment activation command; mamba activate /data/leslie/sarthak/environments/chrombpnet; cd /data/leslie/sarthak/data/chrombpnet_test/; python /data/leslie/sarthak/chrombpnet/chrombpnet/CHROMBPNET.py bias pipeline \;        -ibam merged.bam \;        -d "ATAC" \;        -g hg38.fa \;        -c hg38.chrom.sizes \;        -p peaks_no_blacklist.bed \;        -n output_negatives.bed \;        -fl splits/fold_0.json \;        -b 0.5 \;        -o bias_model_1000_proper/ \;        -fp k562 \;        -il 1024 \;        -ol 800 \;        -j 250 \;        --save_data '/data/leslie/sarthak/data/chrombpnet_test/bias_data/';        # --skip_preprocessing;        #this is done if we want to skip the preprocessing and where to save the data, but saving data is when we train the full model not bias> in cluster <lila> Exited
+
+Job <#!/bin/bash; # Source the bashrc file;source ~/.bashrc; # LSF directives;#BSUB -q gpuqueue;#BSUB -n 1;#BSUB -gpu "num=1";#BSUB -R "rusage[mem=32]";#BSUB -sla llSC2;#BSUB -W 35:00;#BSUB -o /data/leslie/sarthak/chrombpnet/jobs/%J.out;#BSUB -e /data/leslie/sarthak/chrombpnet/jobs/%J.err; # Activate your environment;source ~/mambaforge/etc/profile.d/mamba.sh  # Adjust this line to your environment activation command; mamba activate /data/leslie/sarthak/environments/chrombpnet; cd /data/leslie/sarthak/data/chrombpnet_test/; python /data/leslie/sarthak/chrombpnet/chrombpnet/CHROMBPNET.py bias pipeline \;        -ibam merged.bam \;        -d "ATAC" \;        -g hg38.fa \;        -c hg38.chrom.sizes \;        -p peaks_no_blacklist.bed \;        -n output_negatives.bed \;        -fl splits/fold_0.json \;        -b 0.5 \;        -o bias_model_1000_proper/ \;        -fp k562 \;        -il 1024 \;        -ol 800 \;        -j 250 \;        --save_data '/data/leslie/sarthak/data/chrombpnet_test/bias_data/';        # --skip_preprocessing;        #this is done if we want to skip the preprocessing and where to save the data, but saving data is when we train the full model not bias> was submitted from host <lt22> by user <tiwaris2> in cluster <lila> at Wed Jun 19 11:24:53 2024
+Job was executed on host(s) <lx07>, in queue <gpuqueue>, as user <tiwaris2> in cluster <lila> at Wed Jun 19 11:25:04 2024
+</home/tiwaris2> was used as the home directory.
+</data/leslie/sarthak/data/chrombpnet_test> was used as the working directory.
+Started at Wed Jun 19 11:25:04 2024
+Terminated at Wed Jun 19 11:59:32 2024
+Results reported at Wed Jun 19 11:59:32 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+
+# Source the bashrc file
+source ~/.bashrc
+
+# LSF directives
+#BSUB -q gpuqueue
+#BSUB -n 1
+#BSUB -gpu "num=1"
+#BSUB -R "rusage[mem=32]"
+#BSUB -sla llSC2
+#BSUB -W 35:00
+#BSUB -o /data/leslie/sarthak/chrombpnet/jobs/%J.out
+#BSUB -e /data/leslie/sarthak/chrombpnet/jobs/%J.err
+
+# Activate your environment
+source ~/mambaforge/etc/profile.d/mamba.sh  # Adjust this line to your environment activation command
+
+mamba activate /data/leslie/sarthak/environments/chrombpnet
+
+cd /data/leslie/sarthak/data/chrombpnet_test/
+
+python /data/leslie/sarthak/chrombpnet/chrombpnet/CHROMBPNET.py bias pipeline \
+        -ibam merged.bam \
+        -d "ATAC" \
+        -g hg38.fa \
+        -c hg38.chrom.sizes \
+        -p peaks_no_blacklist.bed \
+        -n output_negatives.bed \
+        -fl splits/fold_0.json \
+        -b 0.5 \
+        -o bias_model_1000_proper/ \
+        -fp k562 \
+        -il 1024 \
+        -ol 800 \
+        -j 250 \
+        --save_data '/data/leslie/sarthak/data/chrombpnet_test/bias_data/'
+        # --skip_preprocessing
+        #this is done if we want to skip the preprocessing and where to save the data, but saving data is when we train the full model not bias
+
+------------------------------------------------------------
+
+TERM_OWNER: job killed by owner.
+Exited with exit code 130.
+
+Resource usage summary:
+
+    CPU time :                                   2155.00 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     32.00 GB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              10
+    Max Threads :                                21
+    Run time :                                   2070 sec.
+    Turnaround time :                            2079 sec.
+
+The output (if any) follows:
+
+preprocessing
+Estimating enzyme shift in input file
+Current estimated shift: +0/+0
+awk -v OFS="\t" '{if ($6=="+"){print $1,$2+4,$3,$4,$5,$6} else if ($6=="-") {print $1,$2,$3-4,$4,$5,$6}}' | sort -k1,1 | bedtools genomecov -bg -5 -i stdin -g hg38.chrom.sizes | LC_COLLATE="C" sort -k1,1 -k2,2n 
+Making BedGraph (Filter chromosomes not in reference fasta)
+
+
+PS:
+
+Read file </data/leslie/sarthak/chrombpnet/jobs/7335393.err> for stderr output of this job.
+

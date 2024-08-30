@@ -1,0 +1,29 @@
+2024-06-13 18:03:28.566841: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-06-13 18:03:30.501898: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1525] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 10438 MB memory:  -> device: 0, name: NVIDIA GeForce GTX 1080 Ti, pci bus id: 0000:83:00.0, compute capability: 6.1
+2024-06-13 18:03:37.933043: I tensorflow/stream_executor/cuda/cuda_dnn.cc:368] Loaded cuDNN version 8907
+2024-06-13 18:03:39.591582: W tensorflow/stream_executor/gpu/asm_compiler.cc:111] *** WARNING *** You are using ptxas 11.0.221, which is older than 11.1. ptxas before 11.1 is known to miscompile XLA code, leading to incorrect results or invalid-address errors.
+
+You may not need to update to CUDA 11.1; cherry-picking the ptxas binary is often sufficient.
+/data/leslie/sarthak/chrombpnet/chrombpnet/training/metrics.py:38: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  plt.legend(loc='best')
+Traceback (most recent call last):
+  File "/data/leslie/sarthak/chrombpnet/chrombpnet/CHROMBPNET.py", line 181, in <module>
+    main()
+  File "/data/leslie/sarthak/chrombpnet/chrombpnet/CHROMBPNET.py", line 25, in main
+    pipelines.chrombpnet_train_pipeline(args)
+  File "/data/leslie/sarthak/chrombpnet/chrombpnet/pipelines.py", line 85, in chrombpnet_train_pipeline
+    train.main(args_copy)
+  File "/data/leslie/sarthak/chrombpnet/chrombpnet/training/train.py", line 84, in main
+    model, architecture_module=get_model(args, parameters)
+  File "/data/leslie/sarthak/chrombpnet/chrombpnet/training/train.py", line 24, in get_model
+    model=architecture_module.getModelGivenModelOptionsAndWeightInits(args, parameters)
+  File "/data/leslie/sarthak/chrombpnet/chrombpnet/training/models/chrombpnet_with_bias_model.py", line 104, in getModelGivenModelOptionsAndWeightInits
+    bpnet_model_wo_bias = bpnet_model(filters, n_dil_layers, sequence_len, out_pred_len)
+  File "/data/leslie/sarthak/chrombpnet/chrombpnet/training/models/chrombpnet_with_bias_model.py", line 47, in bpnet_model
+    conv_x = Conv1D(filters, 
+  File "/data/leslie/sarthak/environments/chrombpnet/lib/python3.10/site-packages/keras/utils/traceback_utils.py", line 67, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/data/leslie/sarthak/environments/chrombpnet/lib/python3.10/site-packages/keras/layers/convolutional.py", line 304, in compute_output_shape
+    raise ValueError(
+ValueError: One of the dimensions in the output is <= 0 due to downsampling in wo_bias_bpnet_8conv. Consider increasing the input size. Received input shape [None, 496, 512] which would produce output shape with a zero or negative value in a dimension.

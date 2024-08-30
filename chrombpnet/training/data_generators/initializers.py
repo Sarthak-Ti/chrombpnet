@@ -55,7 +55,7 @@ def get_bed_regions_for_fold_split(bed_regions, mode, splits_dict):
     print("got split:"+str(mode)+" for bed regions:"+str(bed_regions_to_keep.shape))
     return bed_regions_to_keep, chroms_to_keep
 
-def initialize_generators(args, mode, parameters, return_coords):
+def initialize_generators(args, mode, parameters, return_coords, save_data=False):
 
     # defaults
     peak_regions=None
@@ -89,7 +89,9 @@ def initialize_generators(args, mode, parameters, return_coords):
                                     cts_bw_file=args.bigwig,
                                     add_revcomp=add_revcomp,
                                     return_coords=return_coords,
-                                    shuffle_at_epoch_start=shuffle_at_epoch_start
+                                    shuffle_at_epoch_start=shuffle_at_epoch_start,
+                                    save_data=save_data,
+                                    mode = mode
                                     )
     
     return generator

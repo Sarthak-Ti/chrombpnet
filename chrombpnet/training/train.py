@@ -82,10 +82,15 @@ def main(args):
 
     # get model architecture to load
     model, architecture_module=get_model(args, parameters)
+    if args.save_data is not None:
+        print('data will be saved')
+        save_data = args.save_data
+    else:
+        save_data = False
 
     # initialize generators to load data
-    train_generator = initializers.initialize_generators(args, "train", parameters, return_coords=False)
-    valid_generator = initializers.initialize_generators(args, "valid", parameters, return_coords=False)
+    train_generator = initializers.initialize_generators(args, "train", parameters, return_coords=False, save_data=save_data)
+    valid_generator = initializers.initialize_generators(args, "valid", parameters, return_coords=False, save_data=save_data)
 
     # train the model using the generators
     fit_and_evaluate(model, train_generator, valid_generator, args, architecture_module)

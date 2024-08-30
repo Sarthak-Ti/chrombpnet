@@ -3,7 +3,7 @@ import pandas as pd
 import pyBigWig
 import pyfaidx
 from chrombpnet.training.utils import one_hot
-
+import os
 
 def get_seq(peaks_df, genome, width):
     """
@@ -52,7 +52,7 @@ def get_seq_cts_coords(peaks_df, genome, bw, input_width, output_width, peaks_bo
     coords = get_coords(peaks_df, peaks_bool)
     return seq, cts, coords
 
-def load_data(bed_regions, nonpeak_regions, genome_fasta, cts_bw_file, inputlen, outputlen, max_jitter):
+def load_data(bed_regions, nonpeak_regions, genome_fasta, cts_bw_file, inputlen, outputlen, max_jitter, save_data=False):
     """
     Load sequences and corresponding base resolution counts for training, 
     validation regions in peaks and nonpeaks (2 x 2 x 2 = 8 matrices).
@@ -79,7 +79,7 @@ def load_data(bed_regions, nonpeak_regions, genome_fasta, cts_bw_file, inputlen,
         train_peaks_seqs, train_peaks_cts, train_peaks_coords = get_seq_cts_coords(bed_regions,
                                               genome,
                                               cts_bw,
-                                              inputlen+2*max_jitter,
+                                              inputlen+2*max_jitter, #only jitter on peaks, no random crop else
                                               outputlen+2*max_jitter,
                                               peaks_bool=1)
     
@@ -90,6 +90,16 @@ def load_data(bed_regions, nonpeak_regions, genome_fasta, cts_bw_file, inputlen,
                                               inputlen,
                                               outputlen,
                                               peaks_bool=0)
+
+    # if save_data: #we save it to the folder specified by save_data using np.save
+    #     if not os.path.exists(save_data):
+    #         os.makedirs(save_data)
+    #     np.save(save_data+"peaks_seqs.npy", train_peaks_seqs)
+    #     np.save(save_data+"peaks_cts.npy", train_peaks_cts)
+    #     np.save(save_data+"peaks_coords.npy", train_peaks_coords)
+    #     np.save(save_data+"nonpeaks_seqs.npy", train_nonpeaks_seqs)
+    #     np.save(save_data+"nonpeaks_cts.npy", train_nonpeaks_cts)
+    #     np.save(save_data+"nonpeaks_coords.npy", train_nonpeaks_coords)
 
 
 

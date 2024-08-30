@@ -1,0 +1,14 @@
+2024-06-14 17:07:21.429529: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-06-14 17:07:24.373935: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1525] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 10438 MB memory:  -> device: 0, name: NVIDIA GeForce GTX 1080 Ti, pci bus id: 0000:84:00.0, compute capability: 6.1
+/data/leslie/sarthak/environments/chrombpnet/lib/python3.10/site-packages/keras/layers/core/lambda_layer.py:303: UserWarning:  is not loaded, but a Lambda layer uses it. It may cause errors.
+  function = cls._parse_function_from_config(config, custom_objects,
+2024-06-14 17:08:01.255761: I tensorflow/stream_executor/cuda/cuda_dnn.cc:368] Loaded cuDNN version 8907
+2024-06-14 17:08:02.111710: W tensorflow/stream_executor/gpu/asm_compiler.cc:111] *** WARNING *** You are using ptxas 11.0.221, which is older than 11.1. ptxas before 11.1 is known to miscompile XLA code, leading to incorrect results or invalid-address errors.
+
+You may not need to update to CUDA 11.1; cherry-picking the ptxas binary is often sufficient.
+/data/leslie/sarthak/chrombpnet/chrombpnet/training/metrics.py:38: UserWarning: No artists with labels found to put in legend.  Note that artists whose label start with an underscore are ignored when legend() is called with no argument.
+  plt.legend(loc='best')
+2024-06-14 17:20:17.642005: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1525] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 10438 MB memory:  -> device: 0, name: NVIDIA GeForce GTX 1080 Ti, pci bus id: 0000:84:00.0, compute capability: 6.1
+WARNING:tensorflow:From /data/leslie/sarthak/environments/chrombpnet/lib/python3.10/site-packages/shap/explainers/deep/deep_tf.py:140: The name tf.keras.backend.get_session is deprecated. Please use tf.compat.v1.keras.backend.get_session instead.
+

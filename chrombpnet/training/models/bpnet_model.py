@@ -55,11 +55,9 @@ def getModelGivenModelOptionsAndWeightInits(args, model_params):
                         activation='relu', 
                         dilation_rate=2**i,
                         name=conv_layer_name)(x)
-
         x_len = int_shape(x)[1]
         conv_x_len = int_shape(conv_x)[1]
         assert((x_len - conv_x_len) % 2 == 0) # Necessary for symmetric cropping
-
         x = Cropping1D((x_len - conv_x_len) // 2, name="bpnet_{}crop".format(layer_names[i-1]))(x)
         x = add([conv_x, x])
 
@@ -69,9 +67,10 @@ def getModelGivenModelOptionsAndWeightInits(args, model_params):
                         kernel_size=profile_kernel_size,
                         padding='valid',
                         name='prof_out_precrop')(x)
-
+    
+    
     # Step 1.2 - Crop to match size of the required output size
-    cropsize = int(int_shape(prof_out_precrop)[1]/2)-int(out_pred_len/2)
+    cropsize = int(int_shape(prof_out_precrop)[1]/2)-int(out_pred_len/2) #this forces output len to not be 1024 -> 1000, because prof_out_precrop tells us the output of the convolutional layers, can't go from less to more.
     assert cropsize>=0
     assert (int_shape(prof_out_precrop)[1] % 2 == 0) # Necessary for symmetric cropping
     prof = Cropping1D(cropsize,

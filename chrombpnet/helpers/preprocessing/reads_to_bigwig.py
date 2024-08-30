@@ -76,6 +76,37 @@ def generate_bigwig(input_bam_file, input_fragment_file, input_tagalign_file, ou
     subprocess.run(["bedGraphToBigWig", tmp_bedgraph.name, chrom_sizes_file, output_prefix + "_unstranded.bw"])
 
     tmp_bedgraph.close()
+    
+def extract_chromosome_data(bw, chrom):
+    # Get the length of the chromosome
+    chrom_length = bw.chroms()[chrom]
+    
+    # Retrieve values for the entire chromosome
+    values = np.nan_to_num(bw.values(chrom, 0, chrom_length))
+    #check to ensure it's all integers
+    if not np.all(np.equal(np.mod(values, 1), 0)):
+        raise ValueError('Non-integer values found in BigWig file, not int16 compatible')
+    if not np.all(values >= 0):
+        raise ValueError('Negative values found in BigWig file, using uint16 not ok')
+    return values.astype(np.uint16) #no counts should be above 
+
+def save_bigwig_to_npz(bigwigfile, output_file):
+    # Open the BigWig file
+    bw = pyBigWig.open(bigwigfile)
+    
+    # Dictionary to hold the data for each chromosome
+    chrom_data = {}
+    
+    # Extract data for each chromosome
+    for chrom in bw.chroms().keys():
+        print(f"Processing {chrom}")
+        chrom_data[chrom] = extract_chromosome_data(bw, chrom)
+    
+    # Save the data to a .npz file
+    np.savez(output_file, **chrom_data)
+    
+    # Close the BigWig file
+    bw.close()
 
 def main(args):
 
@@ -123,6 +154,14 @@ def main(args):
             args.chrom_sizes,
             plus_shift_delta,
             minus_shift_delta)
+    if args.convert_bw:
+        #convert it to a numpy array
+        # raise NotImplementedError()        #TODO need to test this
+        #have to figure out where the bw file is stored so we can load it and convert it!
+        bigwigfile = args.output_prefix + "_unstranded.bw"
+        outputfile = args.output_prefix + "_unstranded.npz"
+        save_bigwig_to_npz(bigwigfile, outputfile)
+
 
 if __name__=="__main__":
     args = parse_args()

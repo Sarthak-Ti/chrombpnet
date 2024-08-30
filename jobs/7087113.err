@@ -1,0 +1,25 @@
+2024-06-12 17:24:03.227867: I tensorflow/core/platform/cpu_feature_guard.cc:151] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  SSE4.1 SSE4.2 AVX AVX2 FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-06-12 17:24:06.688485: I tensorflow/core/common_runtime/gpu/gpu_device.cc:1525] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 10438 MB memory:  -> device: 0, name: NVIDIA GeForce GTX 1080 Ti, pci bus id: 0000:02:00.0, compute capability: 6.1
+Traceback (most recent call last):
+  File "/data/leslie/sarthak/chrombpnet/chrombpnet/CHROMBPNET.py", line 181, in <module>
+    main()
+  File "/data/leslie/sarthak/chrombpnet/chrombpnet/CHROMBPNET.py", line 46, in main
+    pipelines.bias_model_qc(args)
+  File "/data/leslie/sarthak/chrombpnet/chrombpnet/pipelines.py", line 444, in bias_model_qc
+    predict.main(args_copy)
+  File "/data/leslie/sarthak/chrombpnet/chrombpnet/training/predict.py", line 105, in main
+    test_generator = initializers.initialize_generators(args, mode="test", parameters=None, return_coords=True)
+  File "/data/leslie/sarthak/chrombpnet/chrombpnet/training/data_generators/initializers.py", line 69, in initialize_generators
+    peak_regions=pd.read_csv(args.peaks,header=None,sep='\t',names=NARROWPEAK_SCHEMA)
+  File "/data/leslie/sarthak/environments/chrombpnet/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/data/leslie/sarthak/environments/chrombpnet/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/data/leslie/sarthak/environments/chrombpnet/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/data/leslie/sarthak/environments/chrombpnet/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/data/leslie/sarthak/environments/chrombpnet/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'bias_model_1000_qc/auxiliary/k562_filtered.bias_peaks.bed'

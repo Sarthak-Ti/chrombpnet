@@ -11,7 +11,7 @@ import chrombpnet.training.metrics as metrics
 import chrombpnet.training.data_generators.initializers as initializers
 from tensorflow.keras.utils import get_custom_objects
 from tensorflow.keras.models import load_model
-from scipy import nanmean, nanstd
+# from scipy import nanmean, nanstd
 
 def write_predictions_h5py(output_prefix, profile, logcts, coords):
     # open h5 file for writing predictions
@@ -101,8 +101,13 @@ def main(args):
     # get model architecture to load - can load .hdf5 and .weights/.arch
     model=load_model_wrapper(args)
 
+    if args.save_data is not None:
+        print('data will be saved')
+        save_data = args.save_data
+    else:
+        save_data = False
 
-    test_generator = initializers.initialize_generators(args, mode="test", parameters=None, return_coords=True)
+    test_generator = initializers.initialize_generators(args, mode="test", parameters=None, return_coords=True, save_data=save_data)
     true_counts, profile_probs_predictions, true_counts_sum, counts_sum_predictions, coordinates = predict_on_batch_wrapper(model, test_generator)
 
 

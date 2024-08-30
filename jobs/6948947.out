@@ -1,0 +1,105 @@
+Sender: LSF System <lsfadmin@lt20>
+Subject: Job 6948947: <#!/bin/bash; # Source the bashrc file;source ~/.bashrc; # LSF directives;#BSUB -q gpuqueue;#BSUB -n 1;#BSUB -gpu "num=1";#BSUB -R "rusage[mem=32]";#BSUB -sla llSC2;#BSUB -W 55:00;#BSUB -o /data/leslie/sarthak/chrombpnet/jobs/%J.out;#BSUB -e /data/leslie/sarthak/chrombpnet/jobs/%J.err; # Activate your environment;source ~/mambaforge/etc/profile.d/mamba.sh  # Adjust this line to your environment activation command; mamba activate /data/leslie/sarthak/environments/chrombpnet; cd /data/leslie/sarthak/data/chrombpnet_test/; chrombpnet bias pipeline \;        -ibam merged.bam \;        -d "ATAC" \;        -g hg38.fa \;        -c hg38.chrom.sizes \;        -p peaks_no_blacklist.bed \;        -n output_negatives.bed \;        -fl splits/fold_0.json \;        -b 0.5 \;        -o bias_model_1000/ \;        -fp k562 \;        -il 1024 \;        -ol 1000 \> in cluster <lila> Exited
+
+Job <#!/bin/bash; # Source the bashrc file;source ~/.bashrc; # LSF directives;#BSUB -q gpuqueue;#BSUB -n 1;#BSUB -gpu "num=1";#BSUB -R "rusage[mem=32]";#BSUB -sla llSC2;#BSUB -W 55:00;#BSUB -o /data/leslie/sarthak/chrombpnet/jobs/%J.out;#BSUB -e /data/leslie/sarthak/chrombpnet/jobs/%J.err; # Activate your environment;source ~/mambaforge/etc/profile.d/mamba.sh  # Adjust this line to your environment activation command; mamba activate /data/leslie/sarthak/environments/chrombpnet; cd /data/leslie/sarthak/data/chrombpnet_test/; chrombpnet bias pipeline \;        -ibam merged.bam \;        -d "ATAC" \;        -g hg38.fa \;        -c hg38.chrom.sizes \;        -p peaks_no_blacklist.bed \;        -n output_negatives.bed \;        -fl splits/fold_0.json \;        -b 0.5 \;        -o bias_model_1000/ \;        -fp k562 \;        -il 1024 \;        -ol 1000 \> was submitted from host <lt13> by user <tiwaris2> in cluster <lila> at Mon Jun 10 17:39:14 2024
+Job was executed on host(s) <lt20>, in queue <gpuqueue>, as user <tiwaris2> in cluster <lila> at Mon Jun 10 17:39:15 2024
+</home/tiwaris2> was used as the home directory.
+</data/leslie/sarthak/data/chrombpnet_test> was used as the working directory.
+Started at Mon Jun 10 17:39:15 2024
+Terminated at Mon Jun 10 23:54:53 2024
+Results reported at Mon Jun 10 23:54:53 2024
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+
+# Source the bashrc file
+source ~/.bashrc
+
+# LSF directives
+#BSUB -q gpuqueue
+#BSUB -n 1
+#BSUB -gpu "num=1"
+#BSUB -R "rusage[mem=32]"
+#BSUB -sla llSC2
+#BSUB -W 55:00
+#BSUB -o /data/leslie/sarthak/chrombpnet/jobs/%J.out
+#BSUB -e /data/leslie/sarthak/chrombpnet/jobs/%J.err
+
+# Activate your environment
+source ~/mambaforge/etc/profile.d/mamba.sh  # Adjust this line to your environment activation command
+
+mamba activate /data/leslie/sarthak/environments/chrombpnet
+
+cd /data/leslie/sarthak/data/chrombpnet_test/
+
+chrombpnet bias pipeline \
+        -ibam merged.bam \
+        -d "ATAC" \
+        -g hg38.fa \
+        -c hg38.chrom.sizes \
+        -p peaks_no_blacklist.bed \
+        -n output_negatives.bed \
+        -fl splits/fold_0.json \
+        -b 0.5 \
+        -o bias_model_1000/ \
+        -fp k562 \
+        -il 1024 \
+        -ol 1000 \
+------------------------------------------------------------
+
+Exited with exit code 1.
+
+Resource usage summary:
+
+    CPU time :                                   24939.00 sec.
+    Max Memory :                                 21 GB
+    Average Memory :                             1.82 GB
+    Total Requested Memory :                     32.00 GB
+    Delta Memory :                               11.00 GB
+    Max Swap :                                   -
+    Max Processes :                              10
+    Max Threads :                                24
+    Run time :                                   22538 sec.
+    Turnaround time :                            22539 sec.
+
+The output (if any) follows:
+
+Estimating enzyme shift in input file
+Current estimated shift: +0/+0
+awk -v OFS="\t" '{if ($6=="+"){print $1,$2+4,$3,$4,$5,$6} else if ($6=="-") {print $1,$2,$3-4,$4,$5,$6}}' | sort -k1,1 | bedtools genomecov -bg -5 -i stdin -g hg38.chrom.sizes | LC_COLLATE="C" sort -k1,1 -k2,2n 
+Making BedGraph (Filter chromosomes not in reference fasta)
+Making Bigwig
+non zero bigwig entries in the given chromosome:  11988527
+evaluating hyperparameters on the following chromosomes ['chr1', 'chr2', 'chr3', 'chr4', 'chr5', 'chr6', 'chr7', 'chr9', 'chr13', 'chr14', 'chr15', 'chr16', 'chr17', 'chr18', 'chr19', 'chr20', 'chr21', 'chr22', 'chrX', 'chrY', 'chr8', 'chr10']
+Number of non peaks input:  487092
+Number of non peaks filtered because the input/output is on the edge:  0
+Number of non peaks being used:  487092
+Number of non peaks input:  26172
+Number of non peaks filtered because the input/output is on the edge:  0
+Number of non peaks being used:  26172
+Number of peaks input:  243546
+Number of peaks filtered because the input/output is on the edge:  0
+Number of peaks being used:  243546
+Number of peaks input:  26172
+Number of peaks filtered because the input/output is on the edge:  0
+Number of peaks being used:  26172
+Upper bound counts cut-off for bias model training:  103.5
+Number of nonpeaks after the upper-bount cut-off:  245315
+Number of nonpeaks after applying upper-bound cut-off and removing outliers :  231783
+counts_loss_weight: 5.8
+{'counts_loss_weight': '5.8', 'filters': '128', 'n_dil_layers': '4', 'inputlen': '1024', 'outputlen': '1000', 'max_jitter': '0', 'chr_fold_path': 'splits/fold_0.json', 'negative_sampling_ratio': '1.0'}
+params:
+filters:128
+n_dil_layers:4
+conv1_kernel_size:21
+profile_kernel_size:75
+counts_loss_weight:5.8
+
+
+PS:
+
+Read file </data/leslie/sarthak/chrombpnet/jobs/6948947.err> for stderr output of this job.
+

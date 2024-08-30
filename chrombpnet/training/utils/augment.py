@@ -28,7 +28,7 @@ def random_crop(seqs, labels, seq_crop_width, label_crop_width, coords):
 
     max_start = seqs.shape[1] - seq_crop_width # This should be the same for both input and output
 
-    starts = np.random.choice(range(max_start+1), size=seqs.shape[0], replace=True)
+    starts = np.random.choice(range(max_start+1), size=seqs.shape[0], replace=True) #samples with replacement
 
     new_coords = coords.copy()
     new_coords[:,1] = new_coords[:,1].astype(int) - (seqs.shape[1]//2) + starts

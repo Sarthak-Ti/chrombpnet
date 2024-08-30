@@ -1,3 +1,5 @@
+import sys
+sys.path.insert(0, "/data/leslie/sarthak/chrombpnet")
 import chrombpnet.parsers as parsers
 import os
 from chrombpnet.data import DefaultDataFile, get_default_data_path
@@ -15,10 +17,10 @@ def main():
 	args = parsers.read_parser()
 	
 	if args.cmd == "pipeline" or args.cmd == "train":
-		os.makedirs(os.path.join(args.output_dir,"logs"), exist_ok=False)
-		os.makedirs(os.path.join(args.output_dir,"auxiliary"), exist_ok=False)
-		os.makedirs(os.path.join(args.output_dir,"models"), exist_ok=False)
-		os.makedirs(os.path.join(args.output_dir,"evaluation"), exist_ok=False)
+		os.makedirs(os.path.join(args.output_dir,"logs"), exist_ok=True)
+		os.makedirs(os.path.join(args.output_dir,"auxiliary"), exist_ok=True)
+		os.makedirs(os.path.join(args.output_dir,"models"), exist_ok=True)
+		os.makedirs(os.path.join(args.output_dir,"evaluation"), exist_ok=True)
 
 		pipelines.chrombpnet_train_pipeline(args)
 	
@@ -30,10 +32,10 @@ def main():
 		
 	elif args.cmd == "bias":
 		if args.cmd_bias == "pipeline" or args.cmd_bias == "train":
-			os.makedirs(os.path.join(args.output_dir,"logs"), exist_ok=False)
-			os.makedirs(os.path.join(args.output_dir,"auxiliary"), exist_ok=False)
-			os.makedirs(os.path.join(args.output_dir,"models"), exist_ok=False)
-			os.makedirs(os.path.join(args.output_dir,"evaluation"), exist_ok=False)
+			os.makedirs(os.path.join(args.output_dir,"logs"), exist_ok=True)
+			os.makedirs(os.path.join(args.output_dir,"auxiliary"), exist_ok=True)
+			os.makedirs(os.path.join(args.output_dir,"models"), exist_ok=True)
+			os.makedirs(os.path.join(args.output_dir,"evaluation"), exist_ok=True)
 
 			pipelines.train_bias_pipeline(args)
 		

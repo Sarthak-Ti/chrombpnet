@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/data/leslie/sarthak/chrombpnet/chrombpnet/CHROMBPNET.py", line 181, in <module>
+    main()
+  File "/data/leslie/sarthak/chrombpnet/chrombpnet/CHROMBPNET.py", line 40, in main
+    pipelines.train_bias_pipeline(args)
+  File "/data/leslie/sarthak/chrombpnet/chrombpnet/pipelines.py", line 311, in train_bias_pipeline
+    reads_to_bigwig.main(args)
+  File "/data/leslie/sarthak/chrombpnet/chrombpnet/helpers/preprocessing/reads_to_bigwig.py", line 115, in main
+    generate_bigwig(args.input_bam_file,
+  File "/data/leslie/sarthak/chrombpnet/chrombpnet/helpers/preprocessing/reads_to_bigwig.py", line 72, in generate_bigwig
+    auto_shift_detect.stream_filtered_tagaligns(p1, genome_fasta_file, p2)
+  File "/data/leslie/sarthak/chrombpnet/chrombpnet/helpers/preprocessing/auto_shift_detect.py", line 56, in stream_filtered_tagaligns
+    out_stream.stdin.write(line)
+KeyboardInterrupt
